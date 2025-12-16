@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:convert' as convert;
 import 'package:em_chat_callkit/chat_callkit.dart';
+import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -49,6 +50,7 @@ Future<Map<String, int>> requestRtcToken(
   );
 
   Map<String, dynamic>? map = convert.jsonDecode(response.body);
+  debugPrint("requestRtcToken: ${map?["accessToken"]}");
   if (map != null) {
     if (map["code"] == "RES_OK" || map["code"] == 200) {
       int agoraUidValue = map["agoraUid"] is int 
@@ -58,6 +60,7 @@ Future<Map<String, int>> requestRtcToken(
     }
   }
 
+  debugPrint("requestRtcToken: $ret");
   return ret;
 }
 
@@ -145,6 +148,9 @@ Future<String?> registerAccount(String userId, String password) async {
 
 /// Obtain a agora token using the userId and password, You are required to provide your own registration service.
 Future<String?> fetchAccountToken(String userId, String password) async {
+
+  return "YWMtu04G-tllEfC6dh9uvHEygFzzvlQ7sUrSpVuQGlyIzFRNT3fAqYoR8JFcdwNZNPJ2AwMAAAGbIArZajeeSACKhpuLm69dGNYybhRV5JG2D_foQUqHVQtr8xBbc0o2Ww";
+
   Map<String, String> params = {};
   params["userAccount"] = userId;
   params["userPassword"] = password;
